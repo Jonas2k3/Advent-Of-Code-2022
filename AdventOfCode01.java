@@ -19,7 +19,6 @@ public class AdventOfCode01{
                 for(int i = 0; i < temp.size(); i++){
                     currentSum += temp.get(i);
                 }
-                System.out.println(currentSum);
                 calcValues.add(currentSum);
                 temp.clear();
                 currentSum = 0;
@@ -29,7 +28,6 @@ public class AdventOfCode01{
             }
         }
         Collections.sort(calcValues);
-        System.out.println(calcValues);
         int sumOfNumbers = calcValues.get(calcValues.size()-1) + calcValues.get(calcValues.size()-2) + calcValues.get(calcValues.size()-3);
         System.out.println(sumOfNumbers);
     }
