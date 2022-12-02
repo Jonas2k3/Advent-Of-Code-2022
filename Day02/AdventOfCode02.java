@@ -16,14 +16,6 @@ public class AdventOfCode02 {
         int partOneScore = 0;
         int partTwoScore = 0;
 
-        // A is rock (1)
-        // B is paper (2)
-        // C is scissors (3)
-
-        // X is loss (0)
-        // Y is draw (3)
-        // Z is win (6)
-
         while (scan.hasNextLine()) {
 
             ArrayList<String> currentLine = new ArrayList<>();
