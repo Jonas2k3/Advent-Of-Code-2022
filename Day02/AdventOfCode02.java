@@ -10,78 +10,71 @@ public class AdventOfCode02 {
     public static void main(String[] args) throws FileNotFoundException {
         File data = new File("Day02/AdventOfCode02Data.txt");
         Scanner scan = new Scanner(data);
-
         ArrayList<String> opponentPlay = new ArrayList<>();
         ArrayList<String> selfPlay = new ArrayList<>();
-        int[] input;
 
-        int score = 0;
+        int partOneScore = 0;
+        int partTwoScore = 0;
 
-        // Sores:
-        // 2 points for paper
-        // 1 for rock
-        // 3 for scissors
-        // win is 6
-        // loss is 0
-        // draw is 3
+        // A is rock (1)
+        // B is paper (2)
+        // C is scissors (3)
 
-        // opponent rock is A
-        // self rock is X
-        // opponent paper is B
-        // own paper is Y
-        // opponent scissors is C
-        // self scissors is Z
+        // X is loss (0)
+        // Y is draw (3)
+        // Z is win (6)
 
         while (scan.hasNextLine()) {
 
             ArrayList<String> currentLine = new ArrayList<>();
-            String [] line = scan.nextLine().split(" ");
+            String[] line = scan.nextLine().split(" ");
             currentLine.add(line[0]);
             currentLine.add(line[1]);
 
-            //opponent chooces scissors
-            if(currentLine.get(0).equals("C")){
-                if(currentLine.get(1).equals("X")){
-                    System.out.println("player won!");
-                    score += 7;
-                } else if(currentLine.get(1).equals("Z")){
-                    System.out.println("It's a draw");
-                    score += 6;
-                } else{
-                    System.out.println("Player lost!");
-                    score += 2;
-                }
-            } 
-
-            //opponent chooces rock
-            else if(currentLine.get(0).equals("A")){
-                if(currentLine.get(1).equals("Y")){
-                    System.out.println("Player won!");
-                    score += 8;
-                } else if(currentLine.get(1).equals("X")){
-                    System.out.println("It's a draw!");
-                    score += 4;
+            // opponent chooces scissors
+            if (currentLine.get(0).equals("C")) {
+                if (currentLine.get(1).equals("X")) {
+                    partOneScore += 7;
+                    partTwoScore += 2;
+                } else if (currentLine.get(1).equals("Y")) {
+                    partOneScore += 2;
+                    partTwoScore += 6;
                 } else {
-                    System.out.println("Player lost!");
-                    score += 3;
+                    partOneScore += 6;
+                    partTwoScore += 7;
                 }
-            } 
+            }
 
-            //opponent chooces paper
-            else if(currentLine.get(0).equals("B")){
-                if(currentLine.get(1).equals("Z")){
-                    System.out.println("Player won!");
-                    score += 9;
-                } else if(currentLine.get(1).equals("Y")){
-                    System.out.println("It's a draw!");
-                    score += 5;
-                } else{
-                    System.out.println("Player lost!");
-                    score += 1;
+            // opponent chooces rock
+            else if (currentLine.get(0).equals("A")) {
+                if (currentLine.get(1).equals("X")) {
+                    partOneScore += 4;
+                    partTwoScore += 3;
+                } else if (currentLine.get(1).equals("Y")) {
+                    partOneScore += 8;
+                    partTwoScore += 4;
+                } else {
+                    partOneScore += 3;
+                    partTwoScore += 8;
+                }
+            }
+
+            // opponent chooces paper
+            else if (currentLine.get(0).equals("B")) {
+                if (currentLine.get(1).equals("X")) {
+                    partOneScore += 1;
+                    partTwoScore += 1;
+                } else if (currentLine.get(1).equals("Y")) {
+                    partOneScore += 5;
+                    partTwoScore += 5;
+                } else {
+                    partOneScore += 9;
+                    partTwoScore += 9;
                 }
             }
         }
 
-        System.out.println("The player achieved a final score of " + score);
+        System.out.println("Part one score: " + partOneScore);
+        System.out.println("Part two score: " + partTwoScore);
     }
 }
