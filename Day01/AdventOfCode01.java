@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class AdventOfCode01{
     public static void main(String[] args) throws FileNotFoundException{
-        File data = new File("AdventOfCode01Data.txt");
+        File data = new File("Day01/AdventOfCode01Data.txt");
         Scanner scan = new Scanner(data);
         int currentSum = 0;
         ArrayList<Integer> temp = new ArrayList<>(); 
