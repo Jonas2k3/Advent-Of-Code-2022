@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class AdventOfCode03 {
+public class AdventOfCode03Part2 {
     public static void main(String[] args) throws FileNotFoundException {
         File data = new File("Day03/AdventOfCodeData03.txt");
         Scanner scan = new Scanner(data);
@@ -42,30 +42,29 @@ public class AdventOfCode03 {
         priority.put("W", 49);       priority.put("X", 50);
         priority.put("Y", 51);       priority.put("Z", 52);
 
-        int partOneSum = 0;
+        int partTwoSum = 0;
+
         ArrayList<String> lines = new ArrayList<>();
 
         while (scan.hasNextLine()) {
-            // part one
-            ArrayList<String> firstHalf = new ArrayList<>();
-            ArrayList<String> secondHalf = new ArrayList<>();
-            String currentLine[] = scan.nextLine().split("");
+            lines.add(scan.nextLine());
+        }
 
-            for (int i = 0; i < (currentLine.length / 2); i++) {
-                firstHalf.add(currentLine[i]);
-            }
-
-            for (int i = (currentLine.length / 2); i < currentLine.length; i++) {
-                secondHalf.add(currentLine[i]);
-            }
-
-            for (String s : firstHalf) {
-                if (secondHalf.contains(s)) {
-                    partOneSum += priority.get(s);
+        for(int i = 0; i < lines.size(); i += 3){
+            ArrayList<String> currentGroup = new ArrayList<>();
+            currentGroup.add(lines.get(i));
+            currentGroup.add(lines.get(i + 1));
+            currentGroup.add(lines.get(i + 2));
+            
+            String[] currentFirstLine = lines.get(i).split("");
+            for(String s : currentFirstLine){
+                if(lines.get(i + 1).contains(s) && lines.get(i + 2).contains(s)){
+                    partTwoSum += priority.get(s);
                     break;
                 }
             }
         }
-        System.out.println(partOneSum);
-    }    
+
+        System.out.println(partTwoSum);
+    }
 }
